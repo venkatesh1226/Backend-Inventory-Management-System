@@ -13,6 +13,28 @@ public class Product {
     private String productName;
     private int quantity;
     private String description;
+    private int factoryId;
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", quantity=" + quantity +
+                ", description='" + description + '\'' +
+                ", factoryId=" + factoryId +
+                ", pic=" + Arrays.toString(pic) +
+                '}';
+    }
+
+    public int getFactoryId() {
+        return factoryId;
+    }
+
+    public void setFactoryId(int factoryId) {
+        this.factoryId = factoryId;
+    }
+
     @Lob
     @Type(type = "org.hibernate.type.ImageType")
     private byte[] pic;
@@ -59,14 +81,4 @@ public class Product {
         this.pic = pic;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "productId=" + productId +
-                ", productName='" + productName + '\'' +
-                ", quantity=" + quantity +
-                ", description='" + description + '\'' +
-                ", pic=" + Arrays.toString(pic) +
-                '}';
-    }
 }

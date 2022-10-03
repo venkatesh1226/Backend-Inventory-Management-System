@@ -19,7 +19,7 @@ public interface FactoryService {
     public List<Factory> addFactory(Factory f);
 
     //delete Factory
-    public List<Factory> removeFactory(Factory id);
+    public List<Factory> removeFactory(Factory f);
 
     //update Factory
     public List<Factory> updateFactory(Integer id, Factory f);
