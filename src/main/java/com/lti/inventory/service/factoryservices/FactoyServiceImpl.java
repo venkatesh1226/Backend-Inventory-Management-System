@@ -6,10 +6,14 @@ import com.lti.inventory.repository.FactoryRepository;
 import com.lti.inventory.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 @Service
+@RestController
+@CrossOrigin(origins = "*")
 public class FactoyServiceImpl implements FactoryService{
 
     @Autowired
@@ -30,16 +34,25 @@ public class FactoyServiceImpl implements FactoryService{
     }
 
     @Override
-    public List<Factory> removeFactory(Factory f) {
+    public List<Factory> removeFactory(Integer id) {
 
-        repo.delete(f);
-        List<Product> prods=new ArrayList<>();
-        for(Product p:productRepo.findAll()){
-            if(f.getFactoryId()==p.getFactoryId()){
-                prods.add(p);
+        Factory f=null;
+        for(Factory i:repo.findAll()){
+            if(i.getFactoryId()==id) {
+                f = i;
+                break;
             }
         }
-        productRepo.deleteAll(prods);
+        if(f!=null) {
+            repo.delete(f);
+            List<Product> prods = new ArrayList<>();
+            for (Product p : productRepo.findAll()) {
+                if (f.getFactoryId() == p.getFactoryId()) {
+                    prods.add(p);
+                }
+            }
+            productRepo.deleteAll(prods);
+        }
         return this.getAllFactories();
     }
 

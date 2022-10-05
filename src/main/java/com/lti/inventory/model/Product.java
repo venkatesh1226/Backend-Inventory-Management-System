@@ -1,10 +1,13 @@
 package com.lti.inventory.model;
 
 import org.hibernate.annotations.Type;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.*;
 import java.util.Arrays;
-
+@RestController
+@CrossOrigin(origins = "*")
 @Entity
 public class Product {
     @Id

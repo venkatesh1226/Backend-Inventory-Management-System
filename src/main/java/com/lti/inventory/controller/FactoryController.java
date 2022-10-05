@@ -29,8 +29,8 @@ public class FactoryController {
         return service.updateFactory(f.getFactoryId(), f);
     }
 
-    @DeleteMapping("/delete-factory")
-    public List<Factory> deleteFactory(@RequestBody Factory f){
-        return service.removeFactory(f);
+    @DeleteMapping("/delete-factory/{id}")
+    public List<Factory> deleteFactory(@PathVariable int id){
+        return service.removeFactory(id);
     }
 }
