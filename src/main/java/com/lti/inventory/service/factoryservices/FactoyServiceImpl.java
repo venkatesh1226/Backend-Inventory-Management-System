@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 @Service
-@RestController
+
 @CrossOrigin(origins = "*")
 public class FactoyServiceImpl implements FactoryService{
 
@@ -69,5 +69,13 @@ public class FactoyServiceImpl implements FactoryService{
         }
        repo.saveAll(factories);
         return this.getAllFactories();
+    }
+
+    @Override
+    public Factory getFactoryById(Integer id) {
+        for(Factory f:repo.findAll())
+            if(f.getFactoryId()==id)
+                return f;
+        return null;
     }
 }

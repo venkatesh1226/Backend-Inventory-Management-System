@@ -24,4 +24,6 @@ public interface FactoryService {
     //update Factory
     public List<Factory> updateFactory(Integer id, Factory f);
 
+    public Factory getFactoryById(Integer id);
+
 }

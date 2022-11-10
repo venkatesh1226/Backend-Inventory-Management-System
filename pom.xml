@@ -16,6 +16,8 @@
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud-azure.version>4.4.0</spring-cloud-azure.version>
+		<jib-maven-plugin.version>3.2.0</jib-maven-plugin.version>
+		<docker.image.prefix>venkateshinventoryregistry.azurecr.io</docker.image.prefix>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -61,6 +63,13 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<!-- https://mvnrepository.com/artifact/com.google.cloud.tools/jib-maven-plugin -->
+			<dependency>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.2.0</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
@@ -70,7 +79,22 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<artifactId>jib-maven-plugin</artifactId>
+				<groupId>com.google.cloud.tools</groupId>
+				<version>${jib-maven-plugin.version}</version>
+				<configuration>
+					<from>
+						<image>mcr.microsoft.com/java/jre:8-zulu-alpine</image>
+					</from>
+					<to>
+						<image>${docker.image.prefix}/${project.artifactId}</image>
+					</to>
+				</configuration>
+			</plugin>
 		</plugins>
+
+		<finalName>spring-boot-docker</finalName>
 	</build>
 
 </project>

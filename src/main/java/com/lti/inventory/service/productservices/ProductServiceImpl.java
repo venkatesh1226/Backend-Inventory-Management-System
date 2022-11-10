@@ -19,22 +19,27 @@ public class ProductServiceImpl implements ProductService{
     public List<Product> getProducts(int factoryId) {
         List<Product> items=new ArrayList<>();
         for(Product item:repo.findAll())
-            if(factoryId==item.getFactoryId())
+            if(factoryId==item.getFactoryId()){
+//                items.add(item.decompress(item));
                 items.add(item);
-
+            }
         return items;
     }
 
     @Override
     public List<Product> addProduct(Product product) {
-        repo.save(product);
-        return null;
+
+//        repo.save(product.compress(product));
+        repo.save((product));
+        return repo.findAll();
+
     }
 
     @Override
     public List<Product> editProduct(Product product) {
         repo.deleteById(product.getProductId());
-        repo.save(product);
+//        repo.save(product.compress(product));
+        repo.save((product));
         return repo.findAll();
     }
 

@@ -33,4 +33,15 @@ public class FactoryController {
     public List<Factory> deleteFactory(@PathVariable int id){
         return service.removeFactory(id);
     }
+
+    @GetMapping("/factory/{id}")
+    public Factory getFactory(@PathVariable int id){
+        return service.getFactoryById(id);
+    }
+
+    @GetMapping("/test")
+    public String tester(){
+        return "Hello World";
+    }
 }
+
