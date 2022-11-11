@@ -42,7 +42,7 @@ public class Product {
     private String picType;
 
     @Lob
-    @Type(type = "org.hibernate.type.ImageType")
+    @Column(length = 5000)
     private byte[] pic;
 
 
@@ -126,46 +126,46 @@ public class Product {
         this.pic = pic;
     }
 
-    public Product compress(Product p){
-
-        Deflater deflater = new Deflater();
-        deflater.setInput(p.pic);
-        deflater.finish();
-
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(p.getPic().length);
-        byte[] buffer = new byte[1024];
-        while (!deflater.finished()) {
-            int count = deflater.deflate(buffer);
-            outputStream.write(buffer, 0, count);
-        }
-        try {
-            outputStream.close();
-        } catch (IOException e) {
-        }
-        System.out.println("Compressed Image Byte Size - " + outputStream.toByteArray().length);
-
-//        return outputStream.toByteArray();
-
-        return new Product(p.getProductId(),p.getProductName(), p.getQuantity(), p.getDescription(),p.getFactoryId(),outputStream.toByteArray(),p.getPicName(),p.getPicType());
-    }
-
-    public Product decompress(Product p){
-        Inflater inflater = new Inflater();
-        inflater.setInput(p.getPic());
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(getPic().length);
-        byte[] buffer = new byte[1024];
-        try {
-            while (!inflater.finished()) {
-                int count = inflater.inflate(buffer);
-                outputStream.write(buffer, 0, count);
-            }
-            outputStream.close();
-        } catch (IOException ioe) {
-        } catch (DataFormatException e) {
-        }
-
-        return new Product(p.getProductId(),p.getProductName(), p.getQuantity(), p.getDescription(),p.getFactoryId(),outputStream.toByteArray(),p.getPicName(),p.getPicType());
-    }
+//    public Product compress(Product p){
+//
+//        Deflater deflater = new Deflater();
+//        deflater.setInput(p.pic);
+//        deflater.finish();
+//
+//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(p.getPic().length);
+//        byte[] buffer = new byte[1024];
+//        while (!deflater.finished()) {
+//            int count = deflater.deflate(buffer);
+//            outputStream.write(buffer, 0, count);
+//        }
+//        try {
+//            outputStream.close();
+//        } catch (IOException e) {
+//        }
+//        System.out.println("Compressed Image Byte Size - " + outputStream.toByteArray().length);
+//
+////        return outputStream.toByteArray();
+//
+//        return new Product(p.getProductId(),p.getProductName(), p.getQuantity(), p.getDescription(),p.getFactoryId(),outputStream.toByteArray(),p.getPicName(),p.getPicType());
+//    }
+//
+//    public Product decompress(Product p){
+//        Inflater inflater = new Inflater();
+//        inflater.setInput(p.getPic());
+//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(getPic().length);
+//        byte[] buffer = new byte[1024];
+//        try {
+//            while (!inflater.finished()) {
+//                int count = inflater.inflate(buffer);
+//                outputStream.write(buffer, 0, count);
+//            }
+//            outputStream.close();
+//        } catch (IOException ioe) {
+//        } catch (DataFormatException e) {
+//        }
+//
+//        return new Product(p.getProductId(),p.getProductName(), p.getQuantity(), p.getDescription(),p.getFactoryId(),outputStream.toByteArray(),p.getPicName(),p.getPicType());
+//    }
 
 
 }
