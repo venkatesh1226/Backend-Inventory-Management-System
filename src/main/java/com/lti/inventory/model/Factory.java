@@ -3,13 +3,12 @@ package com.lti.inventory.model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @RestController
 @CrossOrigin(origins = "*")
 @Entity
+@Table(name = "venkatesh_factory")
 public class Factory {
 
     @Id

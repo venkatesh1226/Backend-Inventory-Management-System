@@ -15,6 +15,7 @@ import java.util.zip.Inflater;
 @RestController
 @CrossOrigin(origins = "*")
 @Entity
+@Table(name = "venkatesh_product")
 public class Product {
 
     public Product(int productId, String productName, int quantity, String description, int factoryId, byte[] pic, String picName, String picType) {
