@@ -52,7 +52,7 @@ public class ProductController {
 //        return service.editProduct(product);
 //    }
 
-    @PostMapping(value="/edit-product")
+    @PutMapping(value="/edit-product")
     List<Product> editProduct(@RequestBody Product product){
         return service.editProduct(product);
     }
