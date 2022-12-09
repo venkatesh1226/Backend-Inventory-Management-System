@@ -63,12 +63,12 @@ public class ProductController {
     }
 
 @PostMapping("/upload")
-    public ResponseData uploadFile(@RequestParam("file")MultipartFile file) throws Exception {
+    public String uploadFile(@RequestParam("file")MultipartFile file) throws Exception {
     Attachment attachment=null;
     String downloadURL="";
     attachment=attachmentService.saveAttachment(file);
     downloadURL= ServletUriComponentsBuilder.fromCurrentContextPath().path("/download/").path(attachment.getId()).toUriString();
-    return new ResponseData(attachment.getFileName(), downloadURL,file.getContentType(),file.getSize());
+    return downloadURL;
 }
 
 @GetMapping("/download/{fileId}")
