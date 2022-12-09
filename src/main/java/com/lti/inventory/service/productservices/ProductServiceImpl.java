@@ -36,10 +36,11 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public List<Product> editProduct(Product product) {
-        repo.deleteById(product.getProductId());
-//        repo.save(product.compress(product));
-        repo.save((product));
+    public List<Product> editProduct(Product p) {
+//        repo.deleteById(product.getProductId());
+////        repo.save(product.compress(product));
+//        repo.save((product));
+       repo.save(new Product(p.getProductId(),p.getProductName(),p.getQuantity(),p.getDescription(),p.getFactoryId(),p.getPicLink()));
         return repo.findAll();
     }
 

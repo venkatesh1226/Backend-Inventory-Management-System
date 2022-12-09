@@ -1,16 +1,10 @@
 package com.lti.inventory.model;
 
-import org.hibernate.annotations.Type;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.*;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.Arrays;
-import java.util.zip.DataFormatException;
-import java.util.zip.Deflater;
-import java.util.zip.Inflater;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -18,15 +12,13 @@ import java.util.zip.Inflater;
 @Table(name = "venkatesh_product")
 public class Product {
 
-    public Product(int productId, String productName, int quantity, String description, int factoryId, byte[] pic, String picName, String picType) {
+    public Product(int productId, String productName, int quantity, String description, int factoryId,  String picLink) {
         this.productId = productId;
         this.productName = productName;
         this.quantity = quantity;
         this.description = description;
         this.factoryId = factoryId;
-        this.pic = pic;
-        this.picName = picName;
-        this.picType = picType;
+        this.picLink = picLink;
     }
 
     @Id
@@ -37,13 +29,7 @@ public class Product {
     private String description;
     private int factoryId;
 
-    private String picName;
-
-    private String picType;
-
-    @Lob
-    @Column(length = 5000)
-    private byte[] pic;
+    private String picLink;
 
 
     public int getFactoryId() {
@@ -54,21 +40,14 @@ public class Product {
         this.factoryId = factoryId;
     }
 
-    public String getPicName() {
-        return picName;
+    public String getPicLink() {
+        return picLink;
     }
 
-    public void setPicName(String picName) {
-        this.picName = picName;
+    public void setPicLink(String picLink) {
+        this.picLink = picLink;
     }
 
-    public String getPicType() {
-        return picType;
-    }
-
-    public void setPicType(String picType) {
-        this.picType = picType;
-    }
 
     @Override
     public String toString() {
@@ -78,9 +57,7 @@ public class Product {
                 ", quantity=" + quantity +
                 ", description='" + description + '\'' +
                 ", factoryId=" + factoryId +
-                ", pic=" + Arrays.toString(pic) +
-                ", picName='" + picName + '\'' +
-                ", picType='" + picType + '\'' +
+                ", picName='" + picLink + '\'' +
                 '}';
     }
 
@@ -118,13 +95,7 @@ public class Product {
         this.description = description;
     }
 
-    public byte[] getPic() {
-        return pic;
-    }
 
-    public void setPic(byte[] pic) {
-        this.pic = pic;
-    }
 
 //    public Product compress(Product p){
 //
@@ -166,6 +137,28 @@ public class Product {
 //
 //        return new Product(p.getProductId(),p.getProductName(), p.getQuantity(), p.getDescription(),p.getFactoryId(),outputStream.toByteArray(),p.getPicName(),p.getPicType());
 //    }
-
+//
+//    public String getUploadDir() {
+//        return uploadDir;
+//    }
+//
+//    public void setUploadDir(String uploadDir) {
+//        this.uploadDir = uploadDir;
+//    }
+//
+//    @Value("${app.upload.dir:${user.home}}")
+//    public String uploadDir;
+//
+//    public void uploadFile(MultipartFile file)
+//    {
+//        try {
+//            Path copyLocation = Paths.get(uploadDir + File.separator + StringUtils.cleanPath(file.getOriginalFilename()));
+//            Files.copy(file.getInputStream(),copyLocation, StandardCopyOption.REPLACE_EXISTING);
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+////            throw new Exception("File Not Found");
+//        }
+//    }
 
 }

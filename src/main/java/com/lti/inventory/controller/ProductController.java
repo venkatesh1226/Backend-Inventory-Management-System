@@ -1,12 +1,20 @@
 package com.lti.inventory.controller;
 
+import com.lti.inventory.model.Attachment;
 import com.lti.inventory.model.Product;
+import com.lti.inventory.model.ResponseData;
+import com.lti.inventory.service.attachment.AttachmentService;
 import com.lti.inventory.service.productservices.ProductService;
 import com.lti.inventory.util.ImageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -15,6 +23,9 @@ import java.util.List;
 public class ProductController {
     @Autowired
     ProductService service;
+    @Autowired
+    AttachmentService attachmentService;
+
     ImageUtils util=new ImageUtils();
 
     @GetMapping("/{fid}/products")
@@ -41,7 +52,7 @@ public class ProductController {
 //        return service.editProduct(product);
 //    }
 
-    @PutMapping(value="/edit-product")
+    @PatchMapping(value="/edit-product")
     List<Product> editProduct(@RequestBody Product product){
         return service.editProduct(product);
     }
@@ -50,4 +61,23 @@ public class ProductController {
     List<Product> deleteProduct(@PathVariable Integer pid){
         return service.deleteProduct(pid);
     }
+
+@PostMapping("/upload")
+    public ResponseData uploadFile(@RequestParam("file")MultipartFile file) throws Exception {
+    Attachment attachment=null;
+    String downloadURL="";
+    attachment=attachmentService.saveAttachment(file);
+    downloadURL= ServletUriComponentsBuilder.fromCurrentContextPath().path("/download/").path(attachment.getId()).toUriString();
+    return new ResponseData(attachment.getFileName(), downloadURL,file.getContentType(),file.getSize());
+}
+
+@GetMapping("/download/{fileId}")
+public ResponseEntity<Resource> downloadFile(@PathVariable String fileId) throws Exception{
+    Attachment attachment = attachmentService.getAttachment(fileId);
+    return ResponseEntity.ok()
+            .contentType(MediaType.parseMediaType(attachment.getFileType()))
+            .header(HttpHeaders.CONTENT_DISPOSITION,
+                   "attachment;filename=\""+attachment.getFileName()+"\"" )
+            .body(new ByteArrayResource(attachment.getData()));
+}
 }

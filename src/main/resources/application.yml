@@ -1,13 +1,18 @@
-spring:
-  datasource:
-    url: jdbc:sqlserver://get-assessment-server.database.windows.net:1433;database=factorydb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
-    username: dbadmin
-    password: db@admin12345
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-      dialect : org.hibernate.dialect.SQLServer2012Dialect
-
-server:
-  port: 8008
+#spring:
+#  datasource:
+#    url: jdbc:sqlserver://get-assessment-server.database.windows.net:1433;database=factorydb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+#    username: dbadmin
+#    password: db@admin12345
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+#      dialect : org.hibernate.dialect.SQLServer2012Dialect
+#  servlet:
+#    multipart:
+#      max-file-size: -1
+#      max-request-size: -1
+#
+#
+#server:
+#  port: 8008
