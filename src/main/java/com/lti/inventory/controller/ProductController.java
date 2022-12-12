@@ -68,7 +68,7 @@ public class ProductController {
     String downloadURL="";
     attachment=attachmentService.saveAttachment(file);
     downloadURL= ServletUriComponentsBuilder.fromCurrentContextPath().path("/download/").path(attachment.getId()).toUriString();
-    return downloadURL;
+    return attachment.getId();
 }
 
 @GetMapping("/download/{fileId}")
