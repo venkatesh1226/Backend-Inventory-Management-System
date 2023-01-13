@@ -1,6 +1,9 @@
 package com.lti.inventory.model;
 
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+@CrossOrigin(origins = "*")
 public class ResponseData {
 
     private String fileName;

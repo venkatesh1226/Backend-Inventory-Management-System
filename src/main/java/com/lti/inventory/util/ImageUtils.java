@@ -1,9 +1,13 @@
 package com.lti.inventory.util;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import java.io.ByteArrayOutputStream;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 
+
+@CrossOrigin(origins = "*")
 public class ImageUtils {
 
     public static byte[] compressImage(byte[] data) {
