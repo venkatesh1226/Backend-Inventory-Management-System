@@ -1,8 +1,8 @@
 spring:
-#  datasource:
-#    url: jdbc:sqlserver://get-assessment-server.database.windows.net:1433;database=factorydb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
-#    username: dbadmin
-#    password: db@admin12345
+  datasource:
+    url: jdbc:sqlserver://get-assessment-server.database.windows.net:1433;database=factorydb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    username: dbadmin
+    password: db@admin12345
   jpa:
     show-sql: true
     hibernate:
