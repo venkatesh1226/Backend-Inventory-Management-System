@@ -15,5 +15,5 @@ public interface ProductService {
 
     public List<Product> editProduct(Product product);
 
-    public List<Product> deleteProduct(Integer pid);
+    public void deleteProduct(Integer pid);
 }

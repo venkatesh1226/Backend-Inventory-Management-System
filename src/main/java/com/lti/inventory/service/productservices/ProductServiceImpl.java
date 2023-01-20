@@ -45,8 +45,8 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public List<Product> deleteProduct(Integer pid) {
+    public void deleteProduct(Integer pid) {
          repo.deleteById(pid);
-         return repo.findAll();
+//         return repo.findAll();
     }
 }

@@ -58,8 +58,8 @@ public class ProductController {
     }
 
     @DeleteMapping("/delete/{pid}")
-    List<Product> deleteProduct(@PathVariable Integer pid){
-        return service.deleteProduct(pid);
+    void deleteProduct(@PathVariable Integer pid){
+         service.deleteProduct(pid);
     }
 
 @PostMapping("/upload")
