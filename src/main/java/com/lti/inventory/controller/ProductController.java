@@ -33,6 +33,11 @@ public class ProductController {
         return service.getProducts(fid);
     }
 
+    @GetMapping("/product/{pid}")
+    Product getProductById(@PathVariable int pid){
+        return service.getProductById(pid);
+    }
+
     @PostMapping("/add-product")
     List<Product> addProduct(@RequestBody Product product){
         return service.addProduct(product);

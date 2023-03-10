@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -25,6 +26,13 @@ public class ProductServiceImpl implements ProductService{
             }
         return items;
     }
+
+    @Override
+    public Product getProductById(int pid) {
+        Optional<Product> p=repo.findById(pid);
+        return p.get();
+    }
+
 
     @Override
     public List<Product> addProduct(Product product) {

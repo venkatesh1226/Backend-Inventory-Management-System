@@ -11,6 +11,8 @@ import java.util.List;
 public interface ProductService {
     public List<Product> getProducts(int factoryId);
 
+    public Product getProductById(int pid);
+
     public List<Product> addProduct(Product product);
 
     public List<Product> editProduct(Product product);
